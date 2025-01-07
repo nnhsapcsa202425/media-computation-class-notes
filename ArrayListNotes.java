@@ -3,14 +3,26 @@ import java.util.ArrayList;
 /**
  * Write a description of class ArrayListNotes here.
  *
- * @author gcschmit
- * @version 
+ * @author mrcallaghan
+ * @version 07jan2025
  */
 public class ArrayListNotes
 {
     public static void main(String[] args)
     {
-        
+        /*
+         * The ArrayList is a Java Generic.
+         * 
+         *  We have to specify the class type of the elements in the list in angle
+         *      brackets (i.e., < >) after every ArrayList identifier.
+         *      
+         *  Primitives (e.g., int, double, boolean) are not classes and cannot be
+         *      specified as the type of the element in a generic. Instead, we can
+         *      use the corresponding Wrapper Classes (e.g., Integer, Double, Boolean).
+         */
+        ArrayList<Double> myList;
+        myList = createRandomDoubleList(10, 20);
+        System.out.println(myList);
     }
     
     /**
@@ -19,13 +31,29 @@ public class ArrayListNotes
      *      1 and range.
      *      
      *  @param size     the number of Double elements to add to the list
-     *  @param range    the range of random values to assign to each element [0, range)
+     *  @param range    the range of random values to assign to each element [1, range)
      *  
      *  @return a reference to the newly created and initialized list
      */
     public static ArrayList<Double> createRandomDoubleList(int size, int range)
     {
-        return null;
+        ArrayList<Double> list = new ArrayList<Double>();
+        
+        for(int i = 0; i < size; i++)
+        {
+            double value = (Math.random() * range) + 1;
+            
+            /*
+             * The add method adds the specified object to the end of the list.
+             * 
+             * Autoboxing:
+             *      Primitive values are automatically converted to their corresponding
+             *          wrapper class. However, type promotion does not occur.
+             */
+            list.add(value);
+        }
+        
+        return list;
     }
          
     
