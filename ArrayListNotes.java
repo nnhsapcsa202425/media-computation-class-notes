@@ -21,6 +21,9 @@ public class ArrayListNotes
         ArrayList<Double> myList;
         myList = createRandomDoubleList(10, 20);
         System.out.println(myList);
+        removeLessThan(myList, 10.0);
+        System.out.println(myList);
+        System.out.println(sumList(myList));
     }
     
     /**
@@ -55,25 +58,63 @@ public class ArrayListNotes
          
     
     /**
-     * Removes even numbers from the specified list.
+     * Removes the items less than a specified limit from the specified list.
      * 
      * @param list  the list of number of potentially remove
      */
     public static void removeLessThan(ArrayList<Double> list, double limit)
     {
-        
+        /*
+         * The size method returns the number of elements in the list.
+         */
+        for(int i = 0; i < list.size(); i++)
+        {
+            /* 
+             * The get method returns the value of the element at the specified index.
+             */
+            double value = list.get(i);
+            if (value < limit)
+            {
+                /*
+                 * The remove method deletes the element at the specified index
+                 *    from the list. All subsequent elements to the right are "shifted left".
+                 */
+                list.remove(i);
+                i--;
+            }
+        }
     }
     
     public static void removeLessThanAlt(ArrayList<Double> list, double limit)
     {
-        
+        for(int i = list.size() - 1; i >= 0; i--)
+        {
+            if(list.get(i) < limit)
+            {
+                list.remove(i);
+            }
+        }
     }
     
     public static double sumList(ArrayList<Double> list)
     {
-        int sum = 0;
+        double sum = 0;
         
-        
+        /*
+         * Enhanced for loops support iterating through ArrayLists.
+         * 
+         *  Java will automatically "unbox" wrapper class objects (e.g., Integer)
+         *      and assign to variables of primitive types (e.g., int).
+         */
+        for(double value : list)
+        {
+            sum += value;
+            /*
+             * Modifying the list (e.g., add, remove) inside an enhanced for loop
+             *      generates a ConcurrentModificationException.
+             */
+            //list.add(7.7);
+        }
         
         return sum;
     }
